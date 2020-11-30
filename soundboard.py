@@ -19,6 +19,8 @@ sndClap = 0
 
 seqLength = 8
 
+bpm = 140 # to be modified
+
 def initGrid():
     global sndGrid
     sndGrid = [[1, 0, 0, 0, 1, 0, 0, 0], [0, 0, 1, 0, 0, 0, 1, 0], [0, 0, 0, 0, 1, 0, 0, 0], [0, 0, 0, 0, 0, 0, 1, 0]]
@@ -39,6 +41,7 @@ def init():
     print("INIT complete")
 
 def sequence():
+    global bpm
     while True:
         for step in range(8):
             print(sndGrid[0][step])
@@ -53,7 +56,7 @@ def sequence():
                 sndChannelList[2].play(sndSnare)
 #            if sndGrid[3][step]:
 #                sndChannelList[3].play(sndClap)
-            sleep(0.125)
+            sleep(60/bpm / 2) # /2 zeby zmienic podzialke typu 1/2, 1/4, 1/8 mimo bpmow
         
 
 def main():
