@@ -33,6 +33,24 @@ String Grid::getGridState(int step) {
   return gridString;
 };
 
+void Grid::getGrid() {
+  // Serial.println("Grid: ");
+  for (int j = 0; j < 4; j++){
+    // Serial.print("Channel ");
+    // Serial.print(j);
+    // Serial.print(" ");
+    for (int i = 0; i < 16; i++) 
+      Serial.print(grid[j][i]);
+  // Serial.println(" ");
+  }
+  // Serial.println(" ");
+}
+
 void Grid::gridFlipState(int channel, int step) {
-  grid[1][step] != grid[1][step];
+  // Serial.print("Flipped: ");
+  // Serial.println(step);
+  // Serial.print("State before: ");
+  // Serial.println(grid[1][step]);
+
+  grid[1][step] = !grid[1][step];
 }

@@ -17,10 +17,19 @@ const byte KEYPAD_ROWS = 4;
 const byte KEYPAD_COLS = 4;
 
 char keys[KEYPAD_ROWS][KEYPAD_COLS] = {
-  {'1','2','3','4'},
-  {'5','6','7','8'},
+  // {'1','2','3','4'},
+  // {'5','6','7','8'},
+  // {'a','b','c','d'},
+  // {'e','f','g','h'}
+  // {0, 1, 2, 3},
+  // {4, 5, 6, 7,},
+  // {8, 9, 10, 11},
+  // {12, 13, 14, 15}
   {'a','b','c','d'},
-  {'e','f','g','h'}
+  {'e','f','g','h'},
+  {'i','j','k','l'},
+  {'m','n','o','p'}
+  
 };
 
 byte rowPins[KEYPAD_ROWS] = {2, 3, 4, 5};
@@ -47,12 +56,6 @@ void setup() {
 
   playPauseButton.begin();
 
-  // for (int i=0; i<(NUMBUTTONS-1); i++) {
-  //   pinMode(i, INPUT);
-  //   lastButtonState[i]=LOW;
-  //   buttonIsPressed[i]=false;
-  // }
-
   pinMode(ledPin, OUTPUT);
   digitalWrite(ledPin, HIGH);
 }
@@ -60,9 +63,12 @@ void setup() {
 void loop() {
   
 
-  char key = keypad.getKey();
+  int key = keypad.getKey();
   if (key != NO_KEY){
-    Serial.println(key);
+    // Serial.print("Key pressed: ");
+    // Serial.println(key - 97);
+    grid.gridFlipState(1, key - 97);
+    // Serial.println("Flipped state");
   }
 
   
@@ -70,20 +76,23 @@ void loop() {
   int bpmTime = 60000 / bpmVal / 4;
 
   if (playPauseButton.released()) {
-      // Serial.println("Button pressed");
-      playPauseButtonState = !playPauseButtonState;
-      if (playPauseButtonState == true) stepCounter = 0;
+    // Serial.print("Button state: ");
+    playPauseButtonState = !playPauseButtonState;
+    // Serial.println(playPauseButtonState);
+    if (playPauseButtonState == true) stepCounter = 0;
   }
   // Serial.println(playPauseButtonState);
   
   // Send msg to RPI after delay time between steps
   if ( (millis() - timeLastAction > bpmTime) && playPauseButtonState) {
+    // grid.getGrid();
     String msgToRpi = grid.getGridState(stepCounter);
-    
     timeLastAction = millis();
     if(msgToRpi.length()) {
+      // grid.getGrid();
       Serial.println(msgToRpi); // Sending msg to RPI
     }  
+
     stepCounter++;
     if (stepCounter > 15) stepCounter = 0;
   }  
