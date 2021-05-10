@@ -17,7 +17,7 @@ class Grid {
     
     public:
         String getGridState(int step);
-        void getGrid();
+        String getGrid();
         void updateGridSingle(int channel, int step);
         void gridFlipState(int channel, int step);
 };
