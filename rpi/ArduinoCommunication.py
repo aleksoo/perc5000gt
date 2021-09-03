@@ -12,9 +12,9 @@ class ArduinoCommunication():
     def connectArduino(self):
         lock = True
         while lock:
-            devicesList = str(getoutput('ls /dev/ | grep "ttyACM"')).split("\n")
+            devicesList = str(getoutput('ls /dev/ | grep "ttyACM*\|ttyUSB*"')).split("\n")
             devicesList = list(filter(None, devicesList))
-            # print(devicesList)
+            print(devicesList)
 
             if len(devicesList) > 0:
                 for device in devicesList:
