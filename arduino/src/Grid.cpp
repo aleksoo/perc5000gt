@@ -1,6 +1,6 @@
 #include "Grid.h"
 
-void Grid::updateGridSingle(int channel, int step) {
+bool Grid::updateGridSingle(int channel, int step) {
     grid[channel][step] = !grid[channel][step];
 }
 
@@ -35,14 +35,15 @@ String Grid::getGridState(int step) {
 
 String Grid::getGrid() {
   String channelSequence = "";
-  for (int i = 0; i < 16; ++i) {
-    if (grid[1][i] == true) {
-      channelSequence += 'X';
-    } else {
-      channelSequence += ' ';
+  for (int j = 0; j < 4; j++) {
+    for (int i = 0; i < 16; ++i) {
+      if (grid[j][i] == true) {
+        channelSequence += 'X';
+      } else {
+        channelSequence += 'O';
+      }
     }
   }
-
   return channelSequence;
 
   
@@ -56,6 +57,22 @@ String Grid::getGrid() {
   // // Serial.println(" ");
   // }
   // // Serial.println(" ");
+}
+
+String Grid::getGridChannel(int channel) {
+  String channelSequence = "";
+  for (int i = 0; i < 16; ++i) {
+    if (grid[channel][i] == true) {
+      channelSequence += 'X';
+    } else {
+      channelSequence += 'O';
+    }
+  }  
+  return channelSequence;
+}
+
+bool Grid::getSingleGrid(int channel, int step) {
+  return this->grid[channel][step];  
 }
 
 void Grid::gridFlipState(int channel, int step) {

@@ -5,21 +5,23 @@
 class Grid {
     private:
         bool grid[4][16] = {
-            {false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false},
-            {false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false},
-            {false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false},
-            {false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false}
-            // {true, false, false, false, true, false, false, false, true, false, false, false, true, false, false, false},
-            // {true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true},
-            // {false, false, false, false, true, false, false, false, false, false, false, false, false, false, false, false},
-            // {false, false, false, false, false, false, false, false, false, false, false, false, true, false, false, false}
+            // {false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false},
+            // {false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false},
+            // {false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false},
+            // {false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false}
+            {true, false, false, false, true, false, false, false, true, false, false, false, true, false, false, false},
+            {true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true},
+            {false, false, false, false, true, false, false, false, false, false, false, false, false, false, false, false},
+            {false, false, false, false, false, false, false, false, false, false, false, false, true, false, false, false}
         };
     
     public:
         String getGridState(int step);
         String getGrid();
-        void updateGridSingle(int channel, int step);
+        bool updateGridSingle(int channel, int step);
         void gridFlipState(int channel, int step);
+        String getGridChannel(int channel);
+        bool getSingleGrid(int channel, int step);
 };
 
 #endif
