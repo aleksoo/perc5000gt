@@ -52,7 +52,7 @@ unsigned long timeLastAction = 0;
 // Temporary variables
 const int ledPin =  17;
   // Encoder
-Encoder encoder(39, 37);
+Encoder encoderChannels[4] = {Encoder(39, 37), Encoder(39, 37), Encoder(39, 37), Encoder(39, 37)};
 long oldPosition[4] = {-999, -999, -999, -999};
 int soundChoice[4] = {0, 0, 0, 0};
 
@@ -82,7 +82,7 @@ void setup() {
 
 void loop() {
   // Serial.println(0);
-  long newPosition = encoder.read();
+  long newPosition = encoderChannels[currentChannel].read();
   // Serial.println(newPosition);
   if (newPosition != oldPosition[currentChannel]) {
     // Serial.println(newPosition, oldPosition);
