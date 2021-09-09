@@ -52,8 +52,9 @@ unsigned long timeLastAction = 0;
 // Temporary variables
 const int ledPin =  17;
   // Encoder
-Encoder encoder(16, 14);
-long oldPosition = -999;
+Encoder encoder(39, 37);
+long oldPosition[4] = {-999, -999, -999, -999};
+int soundChoice[4] = {0, 0, 0, 0};
 
 
 
@@ -81,11 +82,23 @@ void setup() {
 
 void loop() {
   // Serial.println(0);
-  // long newPosition = encoder.read();
-  // if (newPosition != oldPosition) {
-  //   oldPosition = newPosition;
-  //   Serial.println(newPosition);
-  // }
+  long newPosition = encoder.read();
+  // Serial.println(newPosition);
+  if (newPosition != oldPosition[currentChannel]) {
+    // Serial.println(newPosition, oldPosition);
+    // if (newPosition > oldPosition) {
+    //   soundChoice[currentChannel] = (soundChoice[currentChannel] + 1) % 4; 
+    //   oldPosition = newPosition -1;
+    // }
+    // if (newPosition < oldPosition){
+    //   soundChoice[currentChannel] = (soundChoice[currentChannel] - 1) % 4;
+    //   oldPosition = newPosition + 1;
+    // }
+
+    oldPosition[currentChannel] = newPosition;
+    // encoder increments by 2, hence why dividing to keep one "step" 1, not 2
+    soundChoice[currentChannel] = oldPosition[currentChannel] / 2; 
+  }
 
     // BPM setting
   
@@ -102,7 +115,7 @@ void loop() {
  
  // Send msg to RPI after delay time between steps
  if ( (millis() - timeLastAction > bpmTime) && playPauseButtonState) {
-   String msgToRpi = grid.getGridState(stepCounter);
+   String msgToRpi = grid.getGridState(stepCounter, soundChoice);
    timeLastAction = millis();
    if(msgToRpi.length()) {
      // grid.getGrid();

@@ -16,7 +16,7 @@ class Grid {
         };
     
     public:
-        String getGridState(int step);
+        String getGridState(int step, int soundChoice[]);
         String getGrid();
         bool updateGridSingle(int channel, int step);
         void gridFlipState(int channel, int step);
