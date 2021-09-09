@@ -1,9 +1,10 @@
 #include <Keypad.h>
 #include <Button.h>
+#include <Encoder.h>
 
 #include "src/Grid.h"
 #include "src/LiquidExt.h"
-#include "src/Grid.h"
+// #include "src/Grid.h"
 
 
 
@@ -51,8 +52,8 @@ unsigned long timeLastAction = 0;
 // Temporary variables
 const int ledPin =  17;
   // Encoder
-// Encoder encoder(16, 14);
-// long oldPosition = -999;
+Encoder encoder(16, 14);
+long oldPosition = -999;
 
 
 
@@ -123,7 +124,7 @@ int bpmCheck() {
 int sequenceEdit() {
   int key = keypad.getKey();
   if (key != NO_KEY){
-    Serial.println(key);
+    // Serial.println(key);
     grid.updateGridSingle(currentChannel, key - 97);
     screen.printSignInPosition(key - 97, currentChannel, grid.getSingleGrid(currentChannel, key - 97));
     // grid.getGrid();
