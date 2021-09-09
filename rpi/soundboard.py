@@ -11,7 +11,7 @@ from SoundDriver import SoundDriver
 if __name__ == "__main__":
     ardCom = ArduinoCommunication()
     soundDriver = SoundDriver()
-
+    x = 0
     while True:
         if ardCom.isWaiting() > 0:
             msg = MessageParser.parseMessage(ardCom.readSerialMsg())
