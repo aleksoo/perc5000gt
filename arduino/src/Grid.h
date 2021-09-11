@@ -5,18 +5,18 @@
 class Grid {
     private:
         bool grid[4][16] = {
-            // {false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false},
-            // {false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false},
-            // {false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false},
-            // {false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false}
-            {true, false, false, false, true, false, false, false, true, false, false, false, true, false, false, false},
-            {true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true},
-            {false, false, false, false, true, false, false, false, false, false, false, false, false, false, false, false},
-            {false, false, false, false, false, false, false, false, false, false, false, false, true, false, false, false}
+            {false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false},
+            {false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false},
+            {false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false},
+            {false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false}
+            // {true, false, false, false, true, false, false, false, true, false, false, false, true, false, false, false},
+            // {true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true},
+            // {false, false, false, false, true, false, false, false, false, false, false, false, false, false, false, false},
+            // {false, false, false, false, false, false, false, false, false, false, false, false, true, false, false, false}
         };
     
     public:
-        String getGridState(int step);
+        String getGridState(int step, int soundChoice[]);
         String getGrid();
         bool updateGridSingle(int channel, int step);
         void gridFlipState(int channel, int step);

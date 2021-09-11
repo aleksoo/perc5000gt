@@ -20,6 +20,14 @@ class MidiConnection():
                 print("New device id = ", self._usedDevice)     
     # def listenForMidi(self):
 
+    # @staticmethod
+    def getMidiChannelVolume(self, receivedMidi):
+        channel = receivedMidi[0][0][1]
+        # print(channel) # channel
+        value = receivedMidi[0][0][2]
+        # print(value) # value
+        return channel, value
+
 
 
 if __name__ == "__main__":
@@ -28,4 +36,5 @@ if __name__ == "__main__":
     while True:
         midinput = MidiInterface.midiInterface.read(1)
         if len(midinput) > 0:
-            print(midinput)
+            MidiInterface.getMidiChannelVolume(midinput)    
+
