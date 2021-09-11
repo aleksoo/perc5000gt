@@ -29,7 +29,7 @@ class SoundDriver():
                 # print(soundPath)
                 self._channelsSounds[channel].append(pygame.mixer.Sound(soundPath))
             
-            print(self._channelsSounds[channel][0])
+            # print(self._channelsSounds[channel][0])
             
             # print(channelContent)
             # print(channelContent[channel])
@@ -47,9 +47,16 @@ class SoundDriver():
 
     def playSound(self, channelPlayback, sound):
         # print(self._channelsSounds)
-        print(channelPlayback, sound)
+        # print(channelPlayback, sound)
         self._channelsSounds[channelPlayback][sound].stop()
         self._channelsSounds[channelPlayback][sound].play()
+
+    def getMaxChannelLenght(self, channelPlayback):
+        # print(channelPlayback[0], type(channelPlayback[0]))
+        # print(self._channelsSounds[channelPlayback[0]])
+        # print(len(self._channelsSounds[channelPlayback[0]]))
+        tempChannel = int(channelPlayback[0])
+        return len(self._channelsSounds[tempChannel])
 
     def setSoundVolume(self, channel, volume):
         # print(volume/127)
@@ -70,9 +77,12 @@ class SoundDriver():
 
 if __name__ == "__main__":
     soundDriver = SoundDriver()
-    soundDriver.playSound(0, 0)
-    soundDriver.setSoundVolume(0, 100)
-    soundDriver.setSoundVolume(3, 100)
+    # soundDriver.playSound(0, 0)
+    # soundDriver.setSoundVolume(0, 100)
+    # soundDriver.setSoundVolume(3, 100)
+    
+    print(soundDriver.getMaxChannelLenght(1))
+    print(soundDriver.getMaxChannelLenght(3))
     # for i in range(0, 4):
     #     soundDriver.playSound(0)
     #     time.sleep(1)
