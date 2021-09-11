@@ -2,7 +2,7 @@
 
 class MessageParser():
     def parseMessage(msg):
-        print(msg)
+        # print(msg)
         channels = []
         splittedChannels = msg.split('$')
         # print(splittedChannels)

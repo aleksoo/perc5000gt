@@ -11,7 +11,12 @@ class SoundDriver():
 
     def __init__(self):
         # 1 is number of channels, should be bigger in the future to operate on 8 channels
-        pygame.mixer.init(44100, -16, 1, 4096)
+        pygame.mixer.pre_init(44100, -16, 1, 1028)
+        pygame.mixer.quit()
+        pygame.mixer.init(44100, -16, 1, 1028)
+        # pygame.mixer.init()
+        pygame.init()
+        
         self.fileOperator = FileOperator()
         self.loadSounds()
 
@@ -77,9 +82,13 @@ class SoundDriver():
 
 if __name__ == "__main__":
     soundDriver = SoundDriver()
-    # soundDriver.playSound(0, 0)
+    soundDriver.playSound(0, 0)
     # soundDriver.setSoundVolume(0, 100)
     # soundDriver.setSoundVolume(3, 100)
+    while True:
+        soundDriver.playSound(1, 0)
+        # print("play")
+        time.sleep(0.5)
     
     print(soundDriver.getMaxChannelLenght(1))
     print(soundDriver.getMaxChannelLenght(3))
