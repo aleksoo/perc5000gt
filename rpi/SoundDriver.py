@@ -11,7 +11,7 @@ class SoundDriver():
 
     def __init__(self):
         # 1 is number of channels, should be bigger in the future to operate on 8 channels
-        pygame.mixer.init(48000, -16, 1, 1024)
+        pygame.mixer.init(44100, -16, 1, 4096)
         self.fileOperator = FileOperator()
         self.loadSounds()
 
@@ -46,6 +46,9 @@ class SoundDriver():
         # self._sounds.append(pygame.mixer.Sound("kit/clap.wav"))  
 
     def playSound(self, channelPlayback, sound):
+        # print(self._channelsSounds)
+        print(channelPlayback, sound)
+        self._channelsSounds[channelPlayback][sound].stop()
         self._channelsSounds[channelPlayback][sound].play()
 
     def setSoundVolume(self, channel, volume):
@@ -60,7 +63,7 @@ class SoundDriver():
         if channel == 123:
             volumeChannel = 3
 
-        print("new channel ", volumeChannel, " volume is ", volume)
+        # print("new channel ", volumeChannel, " volume is ", volume)
         if volumeChannel != 10:
             for soundVolume in self._channelsSounds[volumeChannel]:
                 soundVolume.set_volume(volume/127)

@@ -26,7 +26,11 @@ if __name__ == "__main__":
 
         if ardCom.isWaiting() > 0:
             msg = MessageParser.parseMessage(ardCom.readSerialMsg())
-            # print(msg)
-            for channelPlayback in msg:
-            #    print("value: ", channelPlayback)
-                soundDriver.playSound(int(channelPlayback)) # TODO: poprawic odbior parsowania message
+            print("Incoming msg:" + str(msg))
+            
+
+            if len(msg) != 0:
+                for channelPlaybackSound in msg:
+                    print("Parsed msg: " + channelPlaybackSound[0], channelPlaybackSound[1])
+                #    print("value: ", channelPlayback)
+                    soundDriver.playSound(int(channelPlaybackSound[0]), int(channelPlaybackSound[1])) # TODO: poprawic odbior parsowania message
