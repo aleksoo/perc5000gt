@@ -26,7 +26,7 @@ Keypad keypad = Keypad( makeKeymap(keys), rowPins, colPins, KEYPAD_ROWS, KEYPAD_
 
   // Play/Pause button variable
 Button playPauseButton(53);
-bool playPauseButtonState = true;
+bool playPauseButtonState = false;
 
   // Channels variables
 Button channels[4] = {Button(46), Button(48), Button(50), Button(52)};
