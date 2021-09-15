@@ -10,10 +10,11 @@ class SoundDriver():
     fileOperator = None
 
     def __init__(self):
-        # 1 is number of channels, should be bigger in the future to operate on 8 channels
-        pygame.mixer.pre_init(44100, -16, 1, 1028)
         pygame.mixer.quit()
-        pygame.mixer.init(44100, -16, 1, 1028)
+        # 1 is number of channels, should be bigger in the future to operate on 8 channels
+        pygame.mixer.pre_init(44100, -16, 2, 1028)
+        pygame.mixer.quit()
+        pygame.mixer.init(44100, -16, 2, 1028)
         # pygame.mixer.init()
         pygame.init()
         
